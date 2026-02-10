@@ -35,6 +35,19 @@ public class UserService {
         findById(id);
         ur.deleteById(id);
     }
+
+    public User update(User obj){
+        User newObj = ur.findById(obj.getId()).orElse(null);
+        updateData(newObj,obj);
+        return ur.save(newObj);
+    }
+
+    private void updateData(User newObj, User obj) {
+        newObj.setName(obj.getName());
+        newObj.setEmail(obj.getEmail());
+
+    }
+
     public User fromDTO(UserDto objDTO){
         return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
     }
