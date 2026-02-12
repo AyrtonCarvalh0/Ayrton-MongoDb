@@ -43,6 +43,9 @@ public class Instantiation implements CommandLineRunner {
         Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "I'm happy today", new AuthorDTO(maria));
         pr.saveAll(Arrays.asList(post1, post2));
 
+        maria.getPosts().addAll(Arrays.asList(post1, post2));
+        ur.save(maria);
+
 
         System.out.println(">>> TOTAL NO BANCO: " + ur.count());
     }
